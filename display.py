@@ -16,7 +16,7 @@ for cell_name in gdsii.cell_dict:
 #    print ( cell_name )
 
 #import the design
-design		= gdspy.GdsImport ( 'TjIn.gds' )
+design		= gdspy.GdsImport ( 'design/TjIn.gds' )
 #extract the design
 gdsii		= design.extract ( 'top' )
 
