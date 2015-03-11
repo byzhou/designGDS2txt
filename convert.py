@@ -19,7 +19,7 @@ design		= gdspy.GdsImport ( 'design/TjIn.gds' )
 gdsii		= design.extract ( 'top' )
 
 #display the design with showing the one layer of reference
-#gdspy.LayoutViewer( cells={ 'top' } , depth=1 )
+gdspy.LayoutViewer( cells={ 'top' } , depth=1 )
 
 #write to file
 outputPath  = 'txt/'
@@ -43,6 +43,7 @@ instWithLayer = gdsii.get_polygons ( firstInst )
 #transform into string
 strWithLayer = str ( instWithLayer )
 
+#print ( strWithLayer )
 writeFile . write ( "11th layer" )
 #Search for the 10th layer's polygon info
 startToken  = re.compile ( "\(11\, 0\)\: \[array\(\[\[" )
@@ -53,7 +54,7 @@ endToken	= re.compile ( "\(\w+\, 0\)\: \[array\(\[\[" )
 #find out the end position of the layer 10
 endpos	  = ( endToken . search ( strWithLayer , startpos + 1 ) ) . start ()
 #find out the number tokens on the layer 10
-numToken	= re.compile ( "\w\.\s" "|[-|\s]\w+\.\w+" "|array" )
+numToken	= re.compile ( "\w\.\s" "|\w\w\.\s" "|[-|\s]\w+\.\w+" "|array" )
 #write all the coordinates
 coords	  = ( numToken . findall ( strWithLayer , startpos , endpos ) ) 
 #print type ( coords )
